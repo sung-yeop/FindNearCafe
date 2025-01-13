@@ -1,0 +1,119 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20px;
+  gap: 20px;
+  background-color: #f5f6f7;
+}
+
+.inputContainer {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 24px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+  z-index: 2;
+}
+
+.mapWrapper {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  height: calc(100vh - 100px);
+}
+
+.sidePanel {
+  width: 300px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.filterSection {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.filterTitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.filterOptions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filterChip {
+  padding: 6px 12px;
+  border-radius: 16px;
+  border: 1px solid #e0e0e0;
+  font-size: 13px;
+  cursor: pointer;
+  background: white;
+}
+
+.filterChip.active {
+  background: #2d64e9;
+  color: white;
+  border-color: #2d64e9;
+}
+
+.mapContainer {
+  flex: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.cafeList {
+  margin-top: 15px;
+}
+
+.cafeItem {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.cafeItem:hover {
+  background-color: #f8f9fa;
+}
+
+.cafeTitle {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.cafeInfo {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.selectedCafeInfo {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 400px;
+  z-index: 1;
+}
