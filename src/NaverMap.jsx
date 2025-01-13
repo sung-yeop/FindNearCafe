@@ -4,6 +4,12 @@ import useNaverMap from "./hooks/useNaverMap";
 import useCafeStore from "./stores/cafeStore";
 import useMapStore from "./stores/mapStore";
 import "./NaverMap.css";
+import { useState } from "react";
+
+const categories = {
+  cafe: { name: "카페", filter: "음식점" },
+  food: { name: "음식점", filter: "음식점" },
+};
 
 const NaverMap = ({ searchKeyword }) => {
   const { address, updateInitialLocation, updateAddressFromSearch } =
@@ -17,6 +23,7 @@ const NaverMap = ({ searchKeyword }) => {
     clearMarkers,
     updateCurrentPosition,
   } = useNaverMap();
+  const [category, setCategory] = useState(categories["cafe"]);
 
   updateInitialLocation();
 
@@ -29,9 +36,9 @@ const NaverMap = ({ searchKeyword }) => {
   useEffect(() => {
     if (address.x && address.y) {
       initializeMap(address);
-      updateCafes({ x: address.x, y: address.y }, naver);
+      updateCafes({ x: address.x, y: address.y }, naver, category);
     }
-  }, [address]);
+  }, [address, category]);
 
   useEffect(() => {
     clearMarkers();
@@ -50,9 +57,22 @@ const NaverMap = ({ searchKeyword }) => {
         <div className="filterSection">
           <div className="filterTitle">카테고리</div>
           <div className="filterOptions">
-            <button className="filterChip active">전체</button>
-            <button className="filterChip">카페</button>
-            <button className="filterChip">식당</button>
+            <button
+              className={`filterChip ${
+                category === categories.cafe ? "active" : ""
+              }`}
+              onClick={() => setCategory(categories.cafe)}
+            >
+              카페
+            </button>
+            <button
+              className={`filterChip ${
+                category === categories.food ? "active" : ""
+              }`}
+              onClick={() => setCategory(categories.food)}
+            >
+              식당
+            </button>
           </div>
         </div>
         <div className="cafeList">

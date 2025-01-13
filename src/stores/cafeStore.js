@@ -6,7 +6,7 @@ const cafeStore = create((set) => ({
   selectedCafe: null,
   setCafes: (cafes) => set({ cafes }),
   setSelectedCafe: (cafe) => set({ selectedCafe: cafe }),
-  updateCafes: async ({ x, y }, naver) => {
+  updateCafes: async ({ x, y }, naver, category) => {
     try {
       const locationResult = await new Promise((resolve, reject) => {
         naver.maps.Service.reverseGeocode(
@@ -28,9 +28,11 @@ const cafeStore = create((set) => ({
         const address = item.address;
         const roadAddress = item.roadAddress;
 
-        const res = await searchLocal(`${roadAddress || address} 카페`);
+        const res = await searchLocal(
+          `${roadAddress || address} ${category.name}`
+        );
         const filteredCafe = res.items
-          .filter((item) => item.category.includes("음식점"))
+          // .filter((item) => item.category.includes(`${category.filter}`))
           .map((item) => {
             const point = new naver.maps.Point(
               parseFloat(item.mapx) / 10000000,
